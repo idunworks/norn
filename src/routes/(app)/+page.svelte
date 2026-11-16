@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { createNornApi } from '$lib/norn';
-	import NewProjectForm from '$lib/components/norn/NewProjectForm.svelte';
-	import { t, tn } from '$lib/components/norn/t';
+	import { createNornApi } from '#lib/norn/index.ts';
+	import NewProjectForm from '#lib/components/norn/NewProjectForm.svelte';
+	import { t, tn } from '#lib/components/norn/t.ts';
 
 	let { data } = $props();
 	const api = createNornApi();

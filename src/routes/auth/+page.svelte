@@ -5,9 +5,9 @@
 	 * mail scanner that opens the link changes nothing. The fragment leaves the
 	 * address bar straight away.
 	 */
-	import { afterNavigate, goto, replaceState } from '$app/navigation';
+	import { afterNavigate, goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { app, getLang } from '$lib/i18n';
+	import { app, getLang } from '#lib/i18n/index.ts';
 
 	const copy = app(getLang());
 	type AuthState = 'loading' | 'ask' | 'sent' | 'ready' | 'failed';
@@ -21,12 +21,15 @@
 	afterNavigate(readToken);
 
 	function readToken(): void {
-		const fromHash = new URLSearchParams(window.location.hash.slice(1)).get('token')?.trim() ?? '';
-		if (window.location.hash) {
-			const clean = `${window.location.pathname}${window.location.search}`;
-			queueMicrotask(() => replaceState(clean, {}));
+		if (!window.location.hash) {
+			// Scrubbing the token below is itself a navigation that lands here
+			// again, now without a hash: keep the token already read.
+			if (!token) authState = 'ask';
+			return;
 		}
-		token = fromHash;
+		token = new URLSearchParams(window.location.hash.slice(1)).get('token')?.trim() ?? '';
+		const clean = `${window.location.pathname}${window.location.search}`;
+		queueMicrotask(() => goto(clean, { shallow: true, replace: true }));
 		authState = token ? 'ready' : 'ask';
 	}
 
@@ -49,9 +52,9 @@
 		const res = await post('/api/auth/verify', { token }).catch(() => null);
 		busy = false;
 		if (res?.ok) {
-			const { next } = (await res.json()) as { next: string };
+			const { next } = await res.json() as { next: string };
 			token = '';
-			await goto(next, { replaceState: true, invalidateAll: true });
+			await goto(next, { replace: true, refreshAll: true });
 			return;
 		}
 		authState = 'failed';
@@ -59,7 +62,9 @@
 	}
 </script>
 
-<svelte:window onhashchange={() => window.location.hash && readToken()} />
+<svelte:window
+	onhashchange={() => window.location.hash && readToken()}
+></svelte:window>
 
 <svelte:head>
 	<title>{copy.signIn} · Norn</title>
@@ -88,7 +93,12 @@
 		{:else if authState === 'sent'}
 			<h2 class="text-lg font-semibold text-primary">{copy.linkSentTitle}</h2>
 			<p class="mt-1 text-sm text-secondary">{copy.linkSentBody}</p>
-			<button type="button" class="mt-4 text-sm text-secondary underline" onclick={() => (authState = 'ask')}>{copy.otherAddress}</button>
+
+			<button
+				type="button"
+				class="mt-4 text-sm text-secondary underline"
+				onclick={() => authState = 'ask'}
+			>{copy.otherAddress}</button>
 		{:else if authState === 'ready'}
 			<h2 class="text-lg font-semibold text-primary">{copy.signInReadyTitle}</h2>
 			<p class="mt-1 text-sm text-secondary">{copy.signInReadyBody}</p>
@@ -98,7 +108,12 @@
 		{:else if authState === 'failed'}
 			<h2 class="text-lg font-semibold text-primary">{copy.signInFailedTitle}</h2>
 			<p class="mt-1 text-sm text-secondary">{message}</p>
-			<button type="button" class="mt-4 text-sm text-secondary underline" onclick={() => (authState = 'ask')}>{copy.askNewLink}</button>
+
+			<button
+				type="button"
+				class="mt-4 text-sm text-secondary underline"
+				onclick={() => authState = 'ask'}
+			>{copy.askNewLink}</button>
 		{/if}
 	</section>
 </main>

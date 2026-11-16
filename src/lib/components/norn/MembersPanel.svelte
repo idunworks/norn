@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { UserPlus, X } from 'lucide-svelte';
-	import { toast } from '$lib/stores/toast';
-	import { displayName, NornError, type Member, type MemberRole, type NornApi } from '$lib/norn';
+	import { toast } from '#lib/stores/toast.ts';
+	import { displayName, NornError, type Member, type MemberRole, type NornApi } from '#lib/norn/index.ts';
 	import Avatar from './Avatar.svelte';
 	import { t } from './t';
 

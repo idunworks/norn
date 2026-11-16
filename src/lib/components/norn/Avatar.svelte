@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { displayName, initials, type Person } from '$lib/norn';
+	import { displayName, initials, type Person } from '#lib/norn/index.ts';
 
 	interface Props {
 		person: Pick<Person, 'name' | 'email'> | null;

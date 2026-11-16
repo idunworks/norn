@@ -16,7 +16,7 @@ Then put HTTPS in front of it: see [docs/self-hosting.md](docs/self-hosting.md).
 
 ## Try it in 30 seconds
 
-No Docker, no email server. Needs Node 22 and pnpm.
+No Docker, no email server. Needs Node 22.17 or newer and pnpm.
 
 ```bash
 pnpm install

@@ -1,12 +1,12 @@
 import type { RequestHandler } from './$types';
-import { allow } from '$lib/server/rateLimit';
-import { LINK_REQUEST_BUDGET, MAILS_PER_ADDRESS_BUDGET, createLoginToken, isAllowed, normalizeEmail } from '$lib/server/auth';
-import { allowlist, getMailer, publicOrigin } from '$lib/server/config';
-import { handle, noStore, problem, readJson } from '$lib/server/http';
-import { getDb } from '$lib/server/instance';
-import { maskEmail } from '$lib/server/mailer';
-import { safeNext } from '$lib/server/safeNext';
-import { app, fill, type Lang } from '$lib/i18n';
+import { allow } from '#lib/server/rateLimit.ts';
+import { LINK_REQUEST_BUDGET, MAILS_PER_ADDRESS_BUDGET, createLoginToken, isAllowed, normalizeEmail } from '#lib/server/auth.ts';
+import { allowlist, getMailer, publicOrigin } from '#lib/server/config.ts';
+import { handle, noStore, problem, readJson } from '#lib/server/http.ts';
+import { getDb } from '#lib/server/instance.ts';
+import { maskEmail } from '#lib/server/mailer.ts';
+import { safeNext } from '#lib/server/safeNext.ts';
+import { app, fill, type Lang } from '#lib/i18n/index.ts';
 
 /** Every accepted request gets this, whether or not the address may sign in. */
 const SAME_ANSWER = { detail: 'If this address may sign in, a link is on its way.' };

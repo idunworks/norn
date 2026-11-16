@@ -2,7 +2,7 @@
  * Small helpers shared by the API routes. Every error answers
  * `{ "error": { "code", "message" } }`; nothing internal leaks into it.
  */
-import { json, type RequestEvent } from '@sveltejs/kit';
+import type { RequestEvent } from '@sveltejs/kit';
 import { SqliteError } from 'better-sqlite3';
 import type { Caller } from './norn/caller';
 import { NornError } from './norn/errors';
@@ -12,11 +12,11 @@ const MAX_BODY_BYTES = 64 * 1024;
 
 export function problem(status: number, message: string): Response {
 	const code = new NornError(status, message).code;
-	return json({ error: { code, message } }, { status, headers: { 'Cache-Control': 'no-store' } });
+	return Response.json({ error: { code, message } }, { status, headers: { 'Cache-Control': 'no-store' } });
 }
 
 export function noStore(body: unknown, status = 200): Response {
-	return json(body, { status, headers: { 'Cache-Control': 'no-store' } });
+	return Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 }
 
 /** Run a handler; a broken rule becomes its status, a constraint race a 409, anything else a bare 500. */

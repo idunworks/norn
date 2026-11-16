@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Plus } from 'lucide-svelte';
-	import type { NornApi, Project } from '$lib/norn';
+	import type { NornApi, Project } from '#lib/norn/index.ts';
 	import { portal } from './portal';
 	import { t } from './t';
 

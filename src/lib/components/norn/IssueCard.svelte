@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Bug, CalendarDays, MessageSquare } from 'lucide-svelte';
-	import { formatDueDate, isOverdue, type Issue, type Member } from '$lib/norn';
+	import { formatDueDate, isOverdue, type Issue, type Member } from '#lib/norn/index.ts';
 	import Avatar from './Avatar.svelte';
 	import { intlLocale, t } from './t';
 

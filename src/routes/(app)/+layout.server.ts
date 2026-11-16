@@ -1,7 +1,7 @@
 import type { LayoutServerLoad } from './$types';
-import { getDb } from '$lib/server/instance';
-import { listNotifications } from '$lib/server/norn/notifications';
-import { requireSignedIn } from '$lib/server/pages';
+import { getDb } from '#lib/server/instance.ts';
+import { listNotifications } from '#lib/server/norn/notifications.ts';
+import { requireSignedIn } from '#lib/server/pages.ts';
 
 export const load: LayoutServerLoad = (event) => {
 	const caller = requireSignedIn(event);

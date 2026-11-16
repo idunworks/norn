@@ -1,5 +1,5 @@
 /** One line of issue history, in the reader's language. */
-import { formatDueDate, formatDuration, type Activity } from '$lib/norn';
+import { formatDueDate, formatDuration, type Activity } from '#lib/norn/index.ts';
 import { intlLocale, t } from './t';
 
 function minutes(value: unknown): string | null {

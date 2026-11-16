@@ -2,8 +2,17 @@
  * Everything Norn reads from its environment, read in one place.
  * See config.example.env for every setting.
  */
-import { dev } from '$app/environment';
-import { env } from '$env/dynamic/private';
+import { dev } from '$app/env';
+
+import {
+	NORN_ALLOWED_EMAILS,
+	NORN_ADMIN_EMAILS,
+	ORIGIN,
+	NORN_SMTP_URL,
+	NORN_MAIL_FROM,
+	NORN_MAIL_CONSOLE
+} from '$app/env/private';
+
 import { isAllowed, parseAllowlist, type Allowlist } from './auth';
 import { createMailer, type Mailer } from './mailer';
 
@@ -17,9 +26,9 @@ function cachedList(read: () => string | undefined): () => Allowlist {
 }
 
 /** NORN_ALLOWED_EMAILS: who may sign in at all. */
-export const allowlist = cachedList(() => env.NORN_ALLOWED_EMAILS);
+export const allowlist = cachedList(() => NORN_ALLOWED_EMAILS);
 /** NORN_ADMIN_EMAILS: who creates projects and sees every board. Must also be allowed. */
-export const adminlist = cachedList(() => env.NORN_ADMIN_EMAILS);
+export const adminlist = cachedList(() => NORN_ADMIN_EMAILS);
 
 export function isAdmin(email: string): boolean {
 	return isAllowed(allowlist(), email) && isAllowed(adminlist(), email);
@@ -32,7 +41,7 @@ export function isAdmin(email: string): boolean {
  * their server. Null when it isn't set.
  */
 export function publicOrigin(requestOrigin: string): string | null {
-	const configured = env.ORIGIN?.trim();
+	const configured = ORIGIN?.trim();
 	if (configured) return new URL(configured).origin;
 	return dev ? requestOrigin : null;
 }
@@ -42,9 +51,9 @@ let mailer: Mailer | null = null;
 export function getMailer(): Mailer {
 	if (!mailer) {
 		mailer = createMailer({
-			smtpUrl: env.NORN_SMTP_URL?.trim() || undefined,
-			from: env.NORN_MAIL_FROM?.trim() || undefined,
-			console: env.NORN_MAIL_CONSOLE === 'true' || (dev && !env.NORN_SMTP_URL)
+			smtpUrl: NORN_SMTP_URL?.trim() || undefined,
+			from: NORN_MAIL_FROM?.trim() || undefined,
+			console: NORN_MAIL_CONSOLE === 'true' || dev && !NORN_SMTP_URL
 		});
 	}
 	return mailer;

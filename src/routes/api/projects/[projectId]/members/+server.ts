@@ -1,7 +1,7 @@
-import { api, readJson } from '$lib/server/http';
-import { getDb } from '$lib/server/instance';
-import { pathId } from '$lib/server/norn/validate';
-import { addMember, getMembers } from '$lib/server/norn/members';
+import { api, readJson } from '#lib/server/http.ts';
+import { getDb } from '#lib/server/instance.ts';
+import { pathId } from '#lib/server/norn/validate.ts';
+import { addMember, getMembers } from '#lib/server/norn/members.ts';
 
 export const GET = api((caller, { params }) => getMembers(getDb(), caller, pathId(params.projectId, 'Project')));
 export const POST = api(

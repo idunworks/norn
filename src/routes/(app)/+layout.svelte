@@ -2,10 +2,10 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { UserRound } from 'lucide-svelte';
-	import { createNornApi } from '$lib/norn';
-	import NotificationsBell from '$lib/components/norn/NotificationsBell.svelte';
-	import SearchBox from '$lib/components/norn/SearchBox.svelte';
-	import { app, getLang, t } from '$lib/i18n';
+	import { createNornApi } from '#lib/norn/index.ts';
+	import NotificationsBell from '#lib/components/norn/NotificationsBell.svelte';
+	import SearchBox from '#lib/components/norn/SearchBox.svelte';
+	import { app, getLang, t } from '#lib/i18n/index.ts';
 
 	let { data, children } = $props();
 	const api = createNornApi();
@@ -14,7 +14,7 @@
 
 	async function signOut(): Promise<void> {
 		await fetch('/api/auth/logout', { method: 'POST' });
-		await goto('/auth', { invalidateAll: true });
+		await goto('/auth', { refreshAll: true });
 	}
 </script>
 

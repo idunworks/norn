@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { safeNext } from '$lib/server/safeNext';
+import { safeNext } from '#lib/server/safeNext.ts';
 
 /** Already signed in: nothing to do here. */
 export const load: PageServerLoad = ({ locals, url }) => {

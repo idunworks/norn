@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1 (2026-11-16)
+
+- SvelteKit 3 (with Vite 8). This clears GitHub's security alerts for SvelteKit 2; none of them
+  touched Norn, which uses no remote functions, prerendering or form actions.
+- Needs Node 22.17 or newer (the Docker image already has it).
+- Settings and behaviour are unchanged, `ORIGIN` included.
+
 ## 0.1.0 (2026-11-16)
 
 The first release.

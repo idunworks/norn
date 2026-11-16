@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import { invalidateAll } from '$app/navigation';
-	import { toast } from '$lib/stores/toast';
-	import { app, fill, getLang } from '$lib/i18n';
+	import { refreshAll } from '$app/navigation';
+	import { toast } from '#lib/stores/toast.ts';
+	import { app, fill, getLang } from '#lib/i18n/index.ts';
 
 	let { data } = $props();
 	const copy = app(getLang());
@@ -20,7 +20,7 @@
 			});
 			if (!res.ok) throw new Error(copy.failed);
 			toast.success(copy.saved);
-			await invalidateAll();
+			await refreshAll();
 		} catch {
 			toast.error(copy.failed);
 		} finally {

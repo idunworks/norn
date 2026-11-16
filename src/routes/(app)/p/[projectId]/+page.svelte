@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { goto, invalidateAll } from '$app/navigation';
+	import { goto, refreshAll } from '$app/navigation';
 	import { page } from '$app/state';
 	import { ArrowLeft } from 'lucide-svelte';
-	import { createNornApi } from '$lib/norn';
-	import Board from '$lib/components/norn/Board.svelte';
-	import MembersPanel from '$lib/components/norn/MembersPanel.svelte';
-	import { t } from '$lib/components/norn/t';
+	import { createNornApi } from '#lib/norn/index.ts';
+	import Board from '#lib/components/norn/Board.svelte';
+	import MembersPanel from '#lib/components/norn/MembersPanel.svelte';
+	import { t } from '#lib/components/norn/t.ts';
 
 	let { data } = $props();
 	const api = createNornApi();
@@ -14,10 +14,10 @@
 
 	// ?issue= keeps an open card linkable (notifications and search use it).
 	function openChange(issueId: string | null) {
-		const url = new URL(page.url);
+		const url = new URL(page.url.href);
 		if (issueId) url.searchParams.set('issue', issueId);
 		else url.searchParams.delete('issue');
-		goto(url, { replaceState: true, noScroll: true, keepFocus: true });
+		goto(url, { replace: true, reset: false });
 	}
 </script>
 
@@ -38,5 +38,5 @@
 			<Board {api} board={data.board} me={data.me} {openIssueId} onopenchange={openChange} />
 		{/key}
 	</div>
-	<MembersPanel {api} projectId={project.id} members={data.board.members} canManage={project.can_manage} onchange={invalidateAll} />
+	<MembersPanel {api} projectId={project.id} members={data.board.members} canManage={project.can_manage} onchange={refreshAll} />
 </div>

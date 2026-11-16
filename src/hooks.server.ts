@@ -1,11 +1,11 @@
-import type { Handle } from '@sveltejs/kit';
-import { env } from '$env/dynamic/private';
-import { pickLang } from '$lib/i18n';
-import { sessionEmail } from '$lib/server/auth';
-import { adminlist, allowlist } from '$lib/server/config';
-import { getDb } from '$lib/server/instance';
-import { callerFor } from '$lib/server/norn/session-caller';
-import { readSessionCookie } from '$lib/server/session';
+import type { Handle } from '@sveltejs/kit/hooks';
+import { NORN_LANG } from '$app/env/private';
+import { pickLang } from '#lib/i18n/index.ts';
+import { sessionEmail } from '#lib/server/auth.ts';
+import { adminlist, allowlist } from '#lib/server/config.ts';
+import { getDb } from '#lib/server/instance.ts';
+import { callerFor } from '#lib/server/norn/session-caller.ts';
+import { readSessionCookie } from '#lib/server/session.ts';
 
 const SAFE_METHODS = new Set(['GET', 'HEAD', 'OPTIONS']);
 
@@ -13,7 +13,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const db = getDb();
 	const email = sessionEmail(db, readSessionCookie(event.cookies, event.url), Date.now());
 	event.locals.caller = callerFor(db, email, allowlist(), adminlist());
-	event.locals.lang = pickLang(event.request.headers.get('accept-language'), env.NORN_LANG);
+	event.locals.lang = pickLang(event.request.headers.get('accept-language'), NORN_LANG);
 
 	// Kit checks the origin of form posts. The API takes JSON, so check it here too:
 	// a state-changing request must come from this site's own pages.

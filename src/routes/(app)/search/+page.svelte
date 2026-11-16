@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Bug, CalendarDays } from 'lucide-svelte';
-	import { formatDueDate } from '$lib/norn';
-	import Avatar from '$lib/components/norn/Avatar.svelte';
-	import { intlLocale, t, tn } from '$lib/components/norn/t';
+	import { formatDueDate } from '#lib/norn/index.ts';
+	import Avatar from '#lib/components/norn/Avatar.svelte';
+	import { intlLocale, t, tn } from '#lib/components/norn/t.ts';
 
 	let { data } = $props();
 	const locale = intlLocale();

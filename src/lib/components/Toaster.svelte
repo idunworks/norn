@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { X } from 'lucide-svelte';
-	import { toast } from '$lib/stores/toast';
+	import { toast } from '#lib/stores/toast.ts';
 </script>
 
 <div class="pointer-events-none fixed bottom-4 right-4 z-[1200] flex w-80 flex-col gap-2" aria-live="polite">

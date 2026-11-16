@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Trash2 } from 'lucide-svelte';
-	import { displayName, formatDateTime, formatRelativeTime, type TimelineEntry } from '$lib/norn';
+	import { displayName, formatDateTime, formatRelativeTime, type TimelineEntry } from '#lib/norn/index.ts';
 	import Avatar from './Avatar.svelte';
 	import { describeActivity } from './describe';
 	import { intlLocale, t } from './t';
