@@ -1,11 +1,11 @@
 import type { RequestHandler } from './$types';
-import { allow } from '$lib/server/rateLimit';
-import { VERIFY_BUDGET, createSession, isAllowed, spendLoginToken } from '$lib/server/auth';
-import { allowlist } from '$lib/server/config';
-import { handle, noStore, problem, readJson } from '$lib/server/http';
-import { getDb } from '$lib/server/instance';
-import { ensureUser } from '$lib/server/norn/users';
-import { setSessionCookie } from '$lib/server/session';
+import { allow } from '#lib/server/rateLimit.ts';
+import { VERIFY_BUDGET, createSession, isAllowed, spendLoginToken } from '#lib/server/auth.ts';
+import { allowlist } from '#lib/server/config.ts';
+import { handle, noStore, problem, readJson } from '#lib/server/http.ts';
+import { getDb } from '#lib/server/instance.ts';
+import { ensureUser } from '#lib/server/norn/users.ts';
+import { setSessionCookie } from '#lib/server/session.ts';
 
 /** Spend a sign-in link's token and start a session. Only the page's button calls this. */
 export const POST: RequestHandler = (event) =>

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	import { Bell } from 'lucide-svelte';
-	import { toast } from '$lib/stores/toast';
-	import { displayName, formatRelativeTime, type NornApi, type Notifications } from '$lib/norn';
+	import { toast } from '#lib/stores/toast.ts';
+	import { displayName, formatRelativeTime, type NornApi, type Notifications } from '#lib/norn/index.ts';
 	import { intlLocale, t } from './t';
 
 	const BADGE_MAX = 9;

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount, untrack } from 'svelte';
 	import { X, Trash2 } from 'lucide-svelte';
-	import { toast } from '$lib/stores/toast';
+	import { toast } from '#lib/stores/toast.ts';
 	import {
 		displayName,
 		estimateDelta,
@@ -12,7 +12,7 @@
 		type NornApi,
 		type Status,
 		type TimelineEntry
-	} from '$lib/norn';
+	} from '#lib/norn/index.ts';
 	import DurationField from './DurationField.svelte';
 	import { portal } from './portal';
 	import Timeline from './Timeline.svelte';

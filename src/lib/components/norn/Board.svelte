@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import { toast } from '$lib/stores/toast';
+	import { toast } from '#lib/stores/toast.ts';
 	import {
 		canDeleteStatus,
 		groupByStatus,
@@ -16,7 +16,7 @@
 		type Me,
 		type NornApi,
 		type Status
-	} from '$lib/norn';
+	} from '#lib/norn/index.ts';
 	import AddColumn from './AddColumn.svelte';
 	import BoardFilters from './BoardFilters.svelte';
 	import Column from './Column.svelte';

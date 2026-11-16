@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { formatDuration, parseDuration } from '$lib/norn';
+	import { formatDuration, parseDuration } from '#lib/norn/index.ts';
 	import { t } from './t';
 
 	interface Props {

@@ -1,5 +1,5 @@
-import type { Lang } from '$lib/i18n';
-import type { Caller } from '$lib/server/norn/caller';
+import type { Lang } from '#lib/i18n/index.ts';
+import type { Caller } from '#lib/server/norn/caller.ts';
 
 declare global {
 	namespace App {

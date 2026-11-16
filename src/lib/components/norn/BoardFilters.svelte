@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { displayName, NO_FILTER, type BoardFilter, type Member } from '$lib/norn';
+	import { displayName, NO_FILTER, type BoardFilter, type Member } from '#lib/norn/index.ts';
 	import { t } from './t';
 
 	interface Props {

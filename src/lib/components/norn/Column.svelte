@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { flip } from 'svelte/animate';
 	import { MoreHorizontal, Plus } from 'lucide-svelte';
-	import { dndzone, type DndEvent, type Issue, type Member, type Status } from '$lib/norn';
+	import { dndzone, type DndEvent, type Issue, type Member, type Status } from '#lib/norn/index.ts';
 	import IssueCard from './IssueCard.svelte';
 	import { t } from './t';
 

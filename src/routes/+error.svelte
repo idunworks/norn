@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { app, getLang } from '$lib/i18n';
+	import { app, getLang } from '#lib/i18n/index.ts';
 
 	const copy = app(getLang());
 </script>

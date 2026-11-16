@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { requireSignedIn } from '$lib/server/pages';
+import { requireSignedIn } from '#lib/server/pages.ts';
 
 export const load: PageServerLoad = (event) => {
 	const caller = requireSignedIn(event);

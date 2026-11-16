@@ -22,7 +22,7 @@ The compose file publishes port 3000 on `127.0.0.1` only, runs the container as 
 with a read-only filesystem and no Linux capabilities, and keeps the database in the
 `norn-data` volume.
 
-Without Docker: Node 22, then `pnpm install && pnpm build && node build`, with the same settings
+Without Docker: Node 22.17 or newer, then `pnpm install && pnpm build && node build`, with the same settings
 in the environment.
 
 ## 3. Put HTTPS in front

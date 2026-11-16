@@ -31,6 +31,8 @@ export async function signedIn(browser: Browser, address: string): Promise<Page>
 	await page.getByRole('button', { name: 'Send sign-in link' }).click();
 	await expect(page.getByText('Check your inbox')).toBeVisible();
 	await page.goto(await signInLink(address));
+	// The token is scrubbed from the address bar (and history) at once.
+	await expect(page).not.toHaveURL(/#token=/);
 	await page.getByRole('button', { name: 'Sign in' }).click();
 	await page.waitForURL((url) => url.pathname === '/');
 	return page;
