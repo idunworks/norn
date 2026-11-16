@@ -2,7 +2,7 @@
 
 A small, self-hosted kanban board for teams: projects, columns you drag cards between, comments with @mentions, time estimates and a notification bell, in one Node process and one SQLite file. More from where it came from: [idunworks.com/projects](https://idunworks.com/projects?utm_source=github&utm_medium=readme&utm_campaign=norn)
 
-<!-- docs/demo.gif: a recording of dragging a card, @mentioning someone, and their bell lighting up. -->
+![Ada drags a card to To do and @mentions Åsa in a comment; Åsa's notification bell shows the mention.](docs/demo.gif)
 
 ## Install
 
