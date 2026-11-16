@@ -1,0 +1,22 @@
+# docker compose up -d   (after: cp config.example.env .env, and editing it)
+services:
+  norn:
+    build: .
+    image: norn:local
+    env_file: .env
+    ports:
+      # Bound to this machine only: put a TLS proxy in front (docs/self-hosting.md).
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - norn-data:/data
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  norn-data:
