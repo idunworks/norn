@@ -1,0 +1,52 @@
+{
+	"name": "norn",
+	"version": "0.1.0",
+	"description": "A small, self-hosted kanban board for teams: projects, columns, cards, comments and @mentions.",
+	"license": "MIT",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": ">=22"
+	},
+	"packageManager": "pnpm@9.15.9",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"start": "node build",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:e2e": "playwright test"
+	},
+	"dependencies": {
+		"better-sqlite3": "13.0.3",
+		"lucide-svelte": "0.544.0",
+		"nodemailer": "10.3.1",
+		"svelte-dnd-action": "0.9.80",
+		"zod": "4.6.7"
+	},
+	"devDependencies": {
+		"@playwright/test": "1.58.2",
+		"@sveltejs/adapter-node": "^5.5.4",
+		"@sveltejs/kit": "^2.60.1",
+		"@sveltejs/vite-plugin-svelte": "^5.1.1",
+		"@tailwindcss/vite": "4.3.5",
+		"@types/better-sqlite3": "^9.6.0",
+		"@types/node": "^22.15.0",
+		"@types/nodemailer": "8.0.2",
+		"svelte": "^5.55.7",
+		"svelte-check": "^4.4.5",
+		"tailwindcss": "4.3.5",
+		"typescript": "^5.9.3",
+		"vite": "^6.4.2",
+		"vitest": "^4.1.12"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"better-sqlite3",
+			"esbuild",
+			"@tailwindcss/oxide"
+		]
+	}
+}

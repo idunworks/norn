@@ -1,0 +1,87 @@
+/*
+ * Norn's look: Tailwind plus a small token layer, so the board's components
+ * can say bg-primary, text-secondary, border-default and theme-primary.
+ * Light and dark follow the visitor's system setting. Every text colour is
+ * checked against the surfaces it sits on (src/lib/theme.test.ts, WCAG AA).
+ */
+@import 'tailwindcss';
+
+@theme {
+	--color-theme-primary: #4338ca;
+	--color-danger: #b91c1c;
+	--color-success: #15803d;
+	--color-warning: #b45309;
+	--color-info: #1d4ed8;
+}
+
+:root {
+	--surface-1: #ffffff;
+	--surface-2: #f3f4f6;
+	--ink-1: #111827;
+	--ink-2: #374151;
+	--ink-3: #4b5563;
+	--line: #d1d5db;
+	--on-danger: #ffffff;
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--surface-1: #111827;
+		--surface-2: #1f2937;
+		--ink-1: #f9fafb;
+		--ink-2: #d1d5db;
+		--ink-3: #9ca3af;
+		--line: #4b5563;
+		--color-theme-primary: #4f46e5;
+		--color-danger: #f87171;
+		--color-success: #4ade80;
+		--color-warning: #fbbf24;
+		--color-info: #60a5fa;
+		--on-danger: #111827;
+		color-scheme: dark;
+	}
+}
+
+@utility bg-primary {
+	background-color: var(--surface-1);
+}
+@utility bg-secondary {
+	background-color: var(--surface-2);
+}
+@utility text-primary {
+	color: var(--ink-1);
+}
+@utility text-secondary {
+	color: var(--ink-2);
+}
+@utility text-tertiary {
+	color: var(--ink-3);
+}
+@utility border-default {
+	border-color: var(--line);
+}
+@utility text-on-danger {
+	color: var(--on-danger);
+}
+
+html {
+	background-color: var(--surface-1);
+	color: var(--ink-1);
+	font-family:
+		ui-sans-serif,
+		system-ui,
+		-apple-system,
+		'Segoe UI',
+		Roboto,
+		sans-serif;
+}
+
+/* SvelteKit's route announcer carries an inline style; keep it hidden either way. */
+#svelte-announcer {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+}
